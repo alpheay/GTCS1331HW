@@ -1,0 +1,10 @@
+Error 1 (CompileTimeError):
+    Filename and classname have to match.
+
+Error 2 (RuntimeError):
+    Divide by Zero produces a massive number, caussing an error, dividing by zero is not allowed.
+
+
+Error 3 (CompileTimeError):
+    Characters should be declared in char type, not string type.
+
