@@ -1,5 +1,7 @@
 package HW2.Submission;
 
+//I worked on the homework assignment alone, using only course materials.
+
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,10 +12,11 @@ public class TravelBuddy {
         Scanner sc= new Scanner(System.in);
         
         
-        System.out.print("Welcome to Travel Buddy Service! Please enter your name here:");
+        System.out.print("Welcome to Travel Buddy Service! Please enter your name here: ");
         String name = sc.next();
         name = fixName(name);
-        printList();
+        
+        System.out.println("\r\n Where would you like to go, " + name + "?");
 
         sc.close();
     }
@@ -25,19 +28,13 @@ public class TravelBuddy {
         return name;
     }
 
-    public static void printList() {
-        HashMap<String, Double> Menu = new HashMap<String, Double>();
-        Menu.put("The Hive", 6.00);
-        Menu.put("Invention Studio", 7.50);
-        Menu.put("Klaus", 6.90);
-        Menu.put("CULC", 3.20);
-
-        for (String i : Menu.keySet()) {
+    public static String printMoney(double x) {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
-            String moneyString = formatter.format(Menu.get(i));
-            System.out.println(i + " - " + moneyString);
-        }
+            String moneyString = formatter.format(x);
+            
+            return moneyString;
     }
 
+    
 }
 
