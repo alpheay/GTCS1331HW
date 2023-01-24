@@ -13,6 +13,7 @@ public class TravelBuddy {
     * @param args The command line arguments.
     */
     public static void main(String[] args) {
+
         //Running Flag
         boolean running = true;
 
