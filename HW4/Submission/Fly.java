@@ -1,3 +1,8 @@
+/**
+ * @author Sagnik Nandi
+ * @version 1.0.0
+ * Fly in Pond as class
+ */
 public class Fly {
     private double mass;
     private double speed;
@@ -5,48 +10,65 @@ public class Fly {
     public static final double DEFAULT_MASS = 5;
     public static final double DEFAULT_SPEED = 10;
 
-    public Fly () {
+    /**
+     * Defaulkt Peram const.
+     */
+    public Fly() {
         this(DEFAULT_MASS, DEFAULT_SPEED);
     }
 
-    public Fly (double mass) {
+    /**
+     * Default speed param const.
+     * @param mass fly mass
+     */
+    public Fly(double mass) {
         this(mass, DEFAULT_SPEED);
     }
 
-    public Fly (double mass, double speed) {
+    /**
+     * Parameter const.
+     * @param mass fly mass
+     * @param speed fly speed
+     */
+    public Fly(double mass, double speed) {
         this.mass = mass;
         this.speed = speed;
     }
-    
-    public void grow (int weight) {
-        if (mass + weight < 20.0 ){
-            speed+=weight;
-        } else if (mass<20 && mass+weight>=20){
-            speed = speed + (20-mass) - 0.5 * (weight-(20-mass));
-        } else{
-            speed -= 0.5 * weight;
-        }
 
+    /**
+     * Fly growth by weight
+     * @param weight weight
+     */
+    public void grow(int weight) {
+        if (this.mass + weight < 20.0) {
+            this.speed += weight;
+        } else if (this.mass < 20 && this.mass + weight >= 20) {
+            this.speed = speed + (20 - this.mass) - 0.5 * (weight - (20 - this.mass));
+        } else {
+            this.speed -= 0.5 * weight;
+        }
         this.mass += weight;
-
     }
 
+    /**
+     * Fly dead or alive state.
+     * @return Dead as a boolean.
+     */
     public boolean isDead() {
-        if (this.mass == 0) {
-            return false;
-        }
-        return true;
+        return this.mass == 0;
     }
 
+    /**
+     * Sumarizes fly state as a console string.
+     * @return String
+     */
     public String toString() {
-        if (isDead()) {
+        if (this.isDead()) {
             return String.format("I’m dead, but I used to be a fly with a speed of %.2f", this.speed);
         } else {
-            return String.format("’m a speedy fly with %.2f speed and %.2f mass.", this.speed, this.mass);
+            return String.format("I’m a speedy fly with %.2f speed and %.2f mass.", this.speed, this.mass);
         }
     }
-
-    
 
     /**
      * @return double return the mass
@@ -59,7 +81,6 @@ public class Fly {
      * @param mass the mass to set
      */
     public void setMass(double mass) {
-        
         this.mass = mass;
     }
 
