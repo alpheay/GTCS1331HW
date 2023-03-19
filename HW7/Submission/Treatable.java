@@ -1,15 +1,29 @@
-package HW7.Submission;
-
+/**
+ * Interface represents Treatable animals
+ * @author Sagnik Nandi
+ * @version 1.0.0
+ */
 public interface Treatable {
-    public static int convertDogToHumanYears(int dog_age) {
-        return (int) (16 * Math.log(dog_age) + 31);        
+    /**
+     * Gets age of dog in human years
+     * @param dogAge age of dog
+     * @return age converted to human years
+     */
+    static int convertDogToHumanYears(int dogAge) {
+        return (int) (16 * Math.log(dogAge) + 31);
     }
 
-    public static int convertCatToHumanYears(int cat_age) {
-        return (int) (9 * Math.log(cat_age) + 18); 
+    /**
+     * Gets cat of dog in human years
+     * @param catAge age of cat
+     * @return age converted to human years
+     */
+    static int convertCatToHumanYears(int catAge) {
+        return (int) (9 * Math.log(catAge) + 18);
     }
 
-    public static void treat(Pet p) {
-        System.out.printf("%s is happy for their treat!", p.getName());
-    }
+    /**
+     * Gives pet a treat
+     */
+    void treat();
 }

@@ -1,13 +1,27 @@
-package HW7.Submission;
-
+/**
+ * Class represents Dog
+ * @author Sagnik Nandi
+ * @version 1.0.0
+ */
 public class Dog extends Pet implements Treatable {
 
     private String breed;
 
+    /**
+     * Breed 1 Arg Dog Const.
+     * @param breed dog breed
+     */
     public Dog(String breed) {
         this("Buzz", 6, 3, breed);
     }
 
+    /**
+     * 4 Arg Dog Const.
+     * @param name dog name
+     * @param age dog age
+     * @param painLevel dog painLevel
+     * @param breed dog breed
+     */
     public Dog(String name, int age, int painLevel, String breed) {
         super(name, age, painLevel);
         this.breed = breed;
@@ -15,29 +29,35 @@ public class Dog extends Pet implements Treatable {
 
     @Override
     public void playWith(Pet p) {
-        if(p instanceof Dog) {
+        if (p instanceof Dog) {
             int currPain = this.getPainLevel();
             this.setPainLevel(this.getPainLevel() - 3);
             System.out.printf("Woof! I love playing with other dogs so much that my pain level went"
-            + "from %d to %d", currPain, this.getPainLevel());
-        } else if(p instanceof Cat) {
+                + "from %d to %d", currPain, this.getPainLevel());
+        } else if (p instanceof Cat) {
             Cat cat = (Cat) p;
             if (!cat.isHasStripes()) {
                 int currPain = this.getPainLevel();
                 this.setPainLevel(this.getPainLevel() - 1);
                 System.out.printf("Woof! Cats without stripes are okay since they made my pain"
-                + "level go from %d to %d", currPain, this.getPainLevel());
-            }else {
+                    + "level go from %d to %d", currPain, this.getPainLevel());
+            } else {
                 this.setPainLevel(this.getPainLevel() + 2);
                 System.out.println("AHHH! I thought you were a tiger!");
             }
         }
     }
 
+    /**
+     * Treat Meathod for dog
+     */
     public void treat() {
         this.setPainLevel(getPainLevel() - 3);
     }
 
+    /**
+     * Dog bark action
+     */
     public void bark() {
         System.out.println("bark bark");
     }
@@ -45,8 +65,8 @@ public class Dog extends Pet implements Treatable {
     @Override
     public String toString() {
         return String.format("My name is %s, I am %d, and I am a %s. "
-        + "On a scale of one to ten my pain level is %d. " 
-        + "My age in human years is %d.", 
+            + "On a scale of one to ten my pain level is %d. "
+            + "My age in human years is %d.",
         this.getName(),
         this.getAge(),
         this.breed,
@@ -58,10 +78,10 @@ public class Dog extends Pet implements Treatable {
     public boolean equals(Object o) {
         if (o instanceof Dog) {
             Dog dog = (Dog) o;
-            return this.getAge() == dog.getAge() 
-            && this.getName().equals(dog.getName()) 
-            && this.getPainLevel() == dog.getPainLevel()
-            && this.breed.equals(dog.breed);
+            return this.getAge() == dog.getAge()
+                && this.getName().equals(dog.getName())
+                && this.getPainLevel() == dog.getPainLevel()
+                && this.breed.equals(dog.breed);
         } else {
             return false;
         }

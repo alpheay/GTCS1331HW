@@ -1,16 +1,31 @@
-package HW7.Submission;
-
+/**
+ * Class represents Vet
+ * @author Sagnik Nandi
+ * @version 1.0.0
+ */
 public class Narwhal extends Pet {
     private int hornLength;
 
+    /**
+     * 0 Arg Narwhal Const.
+     */
     public Narwhal() {
         this("Jelly", 19, 2, 7);
     }
+
+    /**
+     * 4 Arg Narwhal Const.
+     * @param name narwhal name
+     * @param age narwhal age
+     * @param painLevel narwhal pain level
+     * @param hornLength narwal horn len.
+     */
     public Narwhal(String name, int age, int painLevel, int hornLength) {
         super(name, age, painLevel);
         this.hornLength = hornLength;
     }
 
+    @Override
     public void playWith(Pet p) {
         if (p instanceof Narwhal) {
             Narwhal nar = (Narwhal) p;
