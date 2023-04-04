@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 /**
- * This class takes attendance for a class.
+ * Class represting an attendance taker
  * @author Sagnik Nandi
  * @version 1.0.0
  */
@@ -17,9 +16,9 @@ public class AttendanceTaker {
     private File outputFile;
 
     /**
-     * Constructor
-     * @param inputFile input file
-     * @param outputFile output file
+     * constructor for attendance taker
+     * @param inputFile file input
+     * @param outputFile file output
      */
     public AttendanceTaker(File inputFile, File outputFile) {
         this.inputFile = inputFile;
@@ -27,93 +26,84 @@ public class AttendanceTaker {
     }
 
     /**
-     * Constructor
-     * @param inputFile input file
-     * @param outputFile output file
+     * constructor for attendance taker
+     * @param input input file as str
+     * @param output output file as str
      */
-    public AttendanceTaker(String inputFile, String outputFile) {
-        this(
-            new File(inputFile),
-            new File(outputFile)
-            );
+    public AttendanceTaker(String input, String output) {
+        this(new File(input), new File(output));
     }
 
     /**
-     * Main method
-     * @param args Command line args
-     * @throws FileNotFoundException if file not found
+     * process student attendance for a single student
+     * @param args command line args
      */
     public static void main(String[] args) throws FileNotFoundException {
-        AttendanceTaker taker = new AttendanceTaker(args[0], args[1]);
-        taker.takeAttendance();
+        AttendanceTaker a = new AttendanceTaker(args[0], args[1]);
+        a.takeAttendance();
     }
 
     /**
-     * Takes attendance for a student
-     * @throws FileNotFoundException if file not found
+     * process student attendance
+     * @throws FileNotFoundException file not found
      */
+
     public void takeAttendance() throws FileNotFoundException {
-        Scanner scanner = null;
-        String[] studentNames = null;
+        Scanner filescan = null;
+        String[] names = null;
 
 
         try {
-            scanner = new Scanner(inputFile);
+            filescan = new Scanner(inputFile);
 
-            String info = scanner.nextLine();
-            if ((!info.substring(0, 3).equals("|--")
-                || !info.substring(info.length() - 3).equals("--|"))
-                || info.length() <= 6) {
-
-                throw new BadFileException("The file doesn't have corret beginning or end");
+            String data = filescan.nextLine();
+            if ((!data.substring(0, 3).equals("|--")
+                || !data.substring(data.length() - 3).equals("--|"))
+                ||
+                data.length() <= 6) {
+                throw new BadFileException("The file doesn't have correct beginning or end");
             }
 
-            info = info.substring(3, info.length() - 3);
-            studentNames = info.split("---");
-            scanner.close();
+            data = data.substring(3, data.length() - 3);
+            names = data.split("---");
+            filescan.close();
 
-        } catch (NoSuchElementException error) {
 
+
+
+
+        } catch (NoSuchElementException n) {
             throw new BadFileException("The input file was empty");
-
         }
-        PrintWriter filePrintWriter = new PrintWriter(outputFile);
 
-        Scanner processStudentAttendanceScanner = new Scanner(System.in);
+        PrintWriter fileprint = new PrintWriter(outputFile);
 
-        for (String s:studentNames) {
+        Scanner scan = new Scanner(System.in);
 
+        for (String n : names) {
             try {
-
-                processStudentAttendance(s, processStudentAttendanceScanner, filePrintWriter);
-
-            } catch (InvalidNameFormatException excpetion) {
-                String str = String.format("Skipping %s because of an invalid name format: %s\n",
-                    s,
-                    excpetion.getMessage()
-                );
-
-                System.out.println(str);
-
-            } catch (InvalidAttendanceInformationException excpetion) {
-                String str = String.format("Skipping %s because of an invalid attendance information: %s\n",
-                    s,
-                    excpetion.getMessage()
-                );
-                System.out.printf(str);
+                processStudentAttendance(n, scan, fileprint);
+            } catch (InvalidNameFormatException i) {
+                System.out.printf("Skipping %s because of an invalid name format: %s\n",
+                    n,
+                    i.getMessage());
+            } catch (InvalidAttendanceInformationException i) {
+                System.out.printf("Skipping %s because of an invalid attendance information: %s\n",
+                    n,
+                    i.getMessage());
             }
         }
-        processStudentAttendanceScanner.close();
-        filePrintWriter.close();
+        scan.close();
+        fileprint.close();
     }
 
     /**
-     * Processes student attendance
-     * @param name name of student
-     * @param consoleScanner scanner
-     * @param printWriter printwriter
-     * @throws InvalidAttendanceInformationException if attendance info is invalid
-     * @throws InvalidNameFormatException if name is invalid
+     * process student attendance
+     * @param name  student name
+     * @param consoleScanner file scanner
+     * @param printWriter file writer
+     * @throws InvalidAttendanceInformationException invalid attendance info exception
+     * @throws InvalidNameFormatException invalid name format exception
      */
     private static void processStudentAttendance(String name, Scanner consoleScanner, PrintWriter printWriter)
         throws InvalidAttendanceInformationException, InvalidNameFormatException {
@@ -121,27 +111,26 @@ public class AttendanceTaker {
             printWriter.println("-");
             throw new InvalidNameFormatException("The name isn't uppercase only");
         }
-        for (int x = 0; x < name.length(); x++) {
-            if ("0123456789".contains(name.substring(x, x + 1))) {
+        for (int i = 0; i < name.length(); i++) {
+            if ("1234567890".contains(name.substring(i, i + 1))) {
                 printWriter.println("-");
                 throw new InvalidNameFormatException("The name has a digit");
             }
-            if (name.charAt(x) == '|') {
+            if (name.charAt(i) == '|') {
                 printWriter.println("-");
                 throw new InvalidNameFormatException("The name has a pipe character");
             }
         }
-
         System.out.print(name + ": ");
-        String curr = consoleScanner.nextLine();
-        if (curr.equals("")) {
+        String att = consoleScanner.nextLine();
+        if (att.equals("")) {
             printWriter.println("-");
             throw new InvalidAttendanceInformationException("Attendance information missing");
-        } else if (!(curr.equals("A") || curr.equals("P"))) {
+        } else if (!(att.equals("A") || att.equals("P"))) {
             printWriter.println("-");
             throw new InvalidAttendanceInformationException("Attendance information is not P or A");
         } else {
-            printWriter.println(curr);
+            printWriter.println(att);
 
         }
     }
