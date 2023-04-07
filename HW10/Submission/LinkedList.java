@@ -1,14 +1,30 @@
+//I worked on the homework assignment alone, using only course materials.
 import java.util.NoSuchElementException;
+import java.util.ArrayList;
 
-public class LinkedList <T> {
+/**
+ * This class represents a linked list.
+ * @param <T> type of data
+ * @author Sagnik Nandi
+ * @version 1.0.0
+ */
+public class LinkedList<T> {
     private Node<T> head;
     private int size;
 
+    /**
+     * Constructor for the linked list.
+     */
     public LinkedList() {
         head = null;
         size = 0;
     }
 
+    /**
+     * Adds a node to the end of the linked list.
+     * @param data data to be added
+     * @param index index of the node to be added
+     */
     public void addAtIndex(T data, int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException();
@@ -25,6 +41,11 @@ public class LinkedList <T> {
         size++;
     }
 
+    /**
+     * Adds a node to the end of the linked list.
+     * @param index index of the node to be added
+     * @return data of the node to be removed
+     */
     public T removeFromIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Index not valid.");
@@ -45,6 +66,10 @@ public class LinkedList <T> {
         return data;
     }
 
+    /**
+     * Removes all nodes from the linked list.
+     * @throws NoSuchElementException if the list is empty
+     */
     public void clear() {
         if (size == 0) {
             throw new NoSuchElementException();
@@ -54,6 +79,11 @@ public class LinkedList <T> {
         }
     }
 
+    /**
+     * Returns the data of the node at the given index.
+     * @param index index of the node
+     * @return data of the node
+     */
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException();
@@ -65,17 +95,46 @@ public class LinkedList <T> {
         return current.getData();
     }
 
+    /**
+     * Returns if the list is empty.
+     * @return true if the list is empty, false otherwise
+    */
     public boolean isEmpty() {
         return size == 0;
     }
 
-    public T[] toArrayList() {
-        T[] array = (T[]) new Object[size];
+    /**
+     * Returns an ArrayList representation of the linked list.
+     * @return ArrayList representation of the linked list
+     */
+    public ArrayList<T> toArrayList() {
+        ArrayList<T> list = new ArrayList<T>();
         Node<T> current = head;
-        for (int i = 0; i < size; i++) {
-            array[i] = current.getData();
+        while (current != null) {
+            list.add(current.getData());
             current = current.getNext();
         }
-        return array;
+        return list;
+    }
+
+    /**
+     * Returns a fizzbuzz linked list.
+     * @return fizzbuzz linked list
+     */
+    public LinkedList<String> fizzBuzzLinkedList() {
+        LinkedList<String> fizzList = new LinkedList<String>();
+        for (int pos = 1; pos <= this.size; pos++) {
+            if (pos % 3 == 0 && pos % 5 != 0) {
+                fizzList.addAtIndex("Fizz", pos - 1);
+            } else if (pos % 3 != 0 && pos % 5 == 0) {
+                fizzList.addAtIndex("Buzz", pos - 1);
+            } else if (pos % 3 == 0 && pos % 5 == 0) {
+                fizzList.addAtIndex("FizzBuzz", pos - 1);
+            } else {
+                fizzList.addAtIndex(pos + ": " + this.get(pos - 1), pos - 1);
+            }
+        }
+        return fizzList;
     }
 }
+

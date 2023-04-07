@@ -1,4 +1,4 @@
-package HW10.Submission;
+
 /**
  * Node class represents nodes
  * you will use in Linked List
