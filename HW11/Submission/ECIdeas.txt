@@ -1,0 +1,39 @@
+1:
+Problem: Traditional job search methods can be time-consuming, inefficient, and stressful for both job seekers and employers.
+Target Customer: Job seekers and employers looking for a more streamlined and effective way to connect.Job seekers and employers looking for a more streamlined and effective way to connect.
+Customer Need: 8
+Known People With Problem: 20
+Target Market Size: 199111
+Competitors:  Indeed, LinkedIn, Glassdoor
+
+2:
+Problem: Many people struggle with meal planning, grocery shopping, and cooking due to busy schedules and lack of expertise.
+Target Customer: Busy professionals and families who want to eat healthy, home-cooked meals without the hassle.
+Customer Need: 9
+Known People With Problem: 7
+Target Market Size: 92999
+Competitors: Blue Apron, HelloFresh, Sun Basket
+
+3:
+Problem: Traditional healthcare models can be expensive, inaccessible, and impersonal, leading to low patient satisfaction and health outcomes.
+Target Customer:  Patients who want to receive personalized, affordable, and convenient healthcare services.
+Customer Need: 10
+Known People With Problem: 130
+Target Market Size: 1000000
+Competitors: Teladoc, Doctor on Demand, Amwell
+
+4:
+Problem: Managing household chores can be time-consuming, stressful, and overwhelming for many people.
+Target Customer: Busy professionals and families who want to outsource their household tasks to save time and reduce stress.
+Customer Need: 7
+Known People With Problem: 30
+Target Market Size: 942990
+Competitors: TaskRabbit, Handy, Thumbtack
+
+5:
+Problem: Planning and booking travel can be overwhelming and time-consuming, especially for complex itineraries or group trips.
+Target Customer: Travelers who want to plan and book their trips easily, efficiently, and affordably.
+Customer Need: 9
+Known People With Problem: 5
+Target Market Size: 122211
+Competitors: Expedia, Booking.com, Airbnb
