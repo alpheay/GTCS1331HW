@@ -72,6 +72,8 @@ public class StarterUpper extends Application {
         grid.add(compL, 0, 5);
         TextField compTF = new TextField();
         grid.add(compTF, 1, 5);
+        Label nameL = new Label("Sagnik Nandi");
+        grid.add(nameL, 0, 11);
 
         Button addIdeaBtn = new Button();
         addIdeaBtn.setText("Add Current Idea");
